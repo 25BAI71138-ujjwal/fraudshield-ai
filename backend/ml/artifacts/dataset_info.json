@@ -1,0 +1,20 @@
+{
+  "source": "FraudShield AI Synthetic Digital Payments Engine (v1.0)",
+  "mode": "synthetic-demonstration",
+  "description": "Simulated multi-channel digital payment (UPI / Card / NetBanking) transaction dataset reflecting real-world fraud indicators, velocity spikes, and credential anomalies.",
+  "features": {
+    "amount": "Transaction amount in fiat currency (INR/USD equivalent)",
+    "transaction_hour": "Hour of the day when transaction was initiated (0 - 23)",
+    "transaction_frequency_24h": "Number of transactions completed by the user in the past 24 hours",
+    "failed_attempts_24h": "Number of incorrect PIN/password/OTP attempts in the past 24 hours",
+    "is_new_device": "Binary indicator (1 if device footprint is novel, 0 if recognized)",
+    "is_new_beneficiary": "Binary indicator (1 if recipient VPA/account is newly added)",
+    "amount_deviation_score": "Ratio of current transaction amount to historical 30-day average spending (1.0 = normal)",
+    "location_risk_score": "Heuristic IP/geo-anomaly score from 0.0 (safe home zone) to 1.0 (distant high-risk IP)"
+  },
+  "limitations": [
+    "Synthetic transaction distribution modeled on retail digital payment patterns.",
+    "Demonstration purposes only; does not contain real PII or live banking data.",
+    "Ground truth labels reflect simulated fraud rules combined with probabilistic noise."
+  ]
+}

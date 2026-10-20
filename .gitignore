@@ -1,0 +1,24 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+*.db
+.pytest_cache/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.tmp/
+*.log
+
+# Environment & OS
+.env
+**/.env
+.env.*
+!**/.env.example
+.DS_Store
+Thumbs.db

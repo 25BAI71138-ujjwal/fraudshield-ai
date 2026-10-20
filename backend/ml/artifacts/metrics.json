@@ -1,0 +1,106 @@
+{
+  "model_name": "FraudShield Random Forest Risk Engine",
+  "model_type": "RandomForestClassifier",
+  "version": "1.2.0",
+  "trained_at": "2026-10-19T13:24:00.994367+00:00",
+  "dataset_metadata": {
+    "source": "FraudShield AI Synthetic Digital Payments Engine (v1.0)",
+    "mode": "synthetic-demonstration",
+    "description": "Simulated multi-channel digital payment (UPI / Card / NetBanking) transaction dataset reflecting real-world fraud indicators, velocity spikes, and credential anomalies.",
+    "features": {
+      "amount": "Transaction amount in fiat currency (INR/USD equivalent)",
+      "transaction_hour": "Hour of the day when transaction was initiated (0 - 23)",
+      "transaction_frequency_24h": "Number of transactions completed by the user in the past 24 hours",
+      "failed_attempts_24h": "Number of incorrect PIN/password/OTP attempts in the past 24 hours",
+      "is_new_device": "Binary indicator (1 if device footprint is novel, 0 if recognized)",
+      "is_new_beneficiary": "Binary indicator (1 if recipient VPA/account is newly added)",
+      "amount_deviation_score": "Ratio of current transaction amount to historical 30-day average spending (1.0 = normal)",
+      "location_risk_score": "Heuristic IP/geo-anomaly score from 0.0 (safe home zone) to 1.0 (distant high-risk IP)"
+    },
+    "limitations": [
+      "Synthetic transaction distribution modeled on retail digital payment patterns.",
+      "Demonstration purposes only; does not contain real PII or live banking data.",
+      "Ground truth labels reflect simulated fraud rules combined with probabilistic noise."
+    ]
+  },
+  "dataset_stats": {
+    "total_samples": 10000,
+    "train_samples": 8000,
+    "test_samples": 2000,
+    "fraud_samples": 618,
+    "legitimate_samples": 9382,
+    "fraud_rate_pct": 6.18
+  },
+  "evaluation_metrics": {
+    "precision": 0.9806,
+    "recall": 0.8145,
+    "f1_score": 0.8899,
+    "roc_auc": 0.915,
+    "pr_auc": 0.8327,
+    "false_positive_rate": 0.0011,
+    "false_negative_rate": 0.1855,
+    "avg_inference_latency_ms": 35.98,
+    "p95_inference_latency_ms": 49.31
+  },
+  "confusion_matrix": {
+    "true_negatives": 1874,
+    "false_positives": 2,
+    "false_negatives": 23,
+    "true_positives": 101,
+    "total_test": 2000
+  },
+  "baseline_comparison": {
+    "model": "LogisticRegression (balanced)",
+    "metrics": {
+      "precision": 0.886,
+      "recall": 0.8145,
+      "f1": 0.8487,
+      "roc_auc": 0.9075,
+      "pr_auc": 0.8056
+    }
+  },
+  "feature_importances": [
+    {
+      "feature": "location_risk_score",
+      "importance": 0.2543
+    },
+    {
+      "feature": "amount_deviation_score",
+      "importance": 0.2268
+    },
+    {
+      "feature": "transaction_frequency_24h",
+      "importance": 0.2082
+    },
+    {
+      "feature": "amount",
+      "importance": 0.1419
+    },
+    {
+      "feature": "failed_attempts_24h",
+      "importance": 0.093
+    },
+    {
+      "feature": "is_new_device",
+      "importance": 0.0312
+    },
+    {
+      "feature": "transaction_hour",
+      "importance": 0.0257
+    },
+    {
+      "feature": "is_new_beneficiary",
+      "importance": 0.019
+    }
+  ],
+  "feature_columns": [
+    "amount",
+    "transaction_hour",
+    "transaction_frequency_24h",
+    "failed_attempts_24h",
+    "is_new_device",
+    "is_new_beneficiary",
+    "amount_deviation_score",
+    "location_risk_score"
+  ]
+}
